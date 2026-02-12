@@ -164,7 +164,7 @@ class ForgeServer {
   constructor() {
     this.server = new Server(
       {
-        name: "@bretterer/forge-mcp-server",
+        name: "@azgooon/forge-mcp-server",
         version: "0.1.0",
       },
       {

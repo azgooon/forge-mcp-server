@@ -38,7 +38,7 @@ Initial release of the Laravel Forge MCP Server.
 ## Installation
 
 ```bash
-npm install @bretterer/forge-mcp-server
+npm install @azgooon/forge-mcp-server
 ```
 
 ## Usage

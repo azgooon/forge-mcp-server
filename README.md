@@ -14,7 +14,7 @@ A Model Context Protocol (MCP) server for interacting with Laravel Forge API. Th
 ## Installation
 
 ```bash
-npm install @bretterer/forge-mcp-server
+npm install @azgooon/forge-mcp-server
 ```
 
 ## Usage
@@ -40,7 +40,7 @@ npx forge-mcp-server
 Or add it to your project:
 
 ```javascript
-import { ForgeServer } from '@bretterer/forge-mcp-server';
+import { ForgeServer } from '@azgooon/forge-mcp-server';
 
 const server = new ForgeServer();
 server.run().catch(console.error);
@@ -68,7 +68,7 @@ The MCP server provides the following tools:
 ### Setup
 
 ```bash
-git clone https://github.com/bretterer/forge-mcp-server.git
+git clone https://github.com/azgooon/forge-mcp-server.git
 cd forge-mcp-server
 npm install
 ```

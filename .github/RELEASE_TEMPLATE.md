@@ -29,7 +29,7 @@
 ## Installation
 
 ```bash
-npm install @bretterer/forge-mcp-server@[version]
+npm install @azgooon/forge-mcp-server@[version]
 ```
 
 ## Upgrade Notes

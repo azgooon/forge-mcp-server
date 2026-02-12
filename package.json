@@ -1,5 +1,5 @@
 {
-  "name": "@bretterer/forge-mcp-server",
+  "name": "@azgooon/forge-mcp-server",
   "version": "0.1.1",
   "description": "Laravel Forge MCP server for managing servers, sites, and deployments",
   "type": "module",
@@ -35,6 +35,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bretterer/forge-mcp-server.git"
+    "url": "git+https://github.com/azgooon/forge-mcp-server.git"
   }
 }
