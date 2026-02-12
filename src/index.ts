@@ -51,7 +51,12 @@ class ForgeAPIClient {
     this.apiKey = apiKey;
   }
 
-  private async makeRequest(endpoint: string, method: string = "GET", body?: any) {
+  private async makeRequest(
+    endpoint: string,
+    method: string = "GET",
+    body?: any,
+    responseType: "json" | "text" | "none" = "json"
+  ) {
     const url = `${this.baseUrl}${endpoint}`;
     const headers: Record<string, string> = {
       "Authorization": `Bearer ${this.apiKey}`,
@@ -70,6 +75,14 @@ class ForgeAPIClient {
         ErrorCode.InternalError,
         `Forge API request failed: ${response.status} ${response.statusText}`
       );
+    }
+
+    if (responseType === "text") {
+      return response.text();
+    }
+
+    if (responseType === "none") {
+      return;
     }
 
     return response.json();
@@ -101,34 +114,41 @@ class ForgeAPIClient {
   }
 
   async deploySite(serverId: number, siteId: number): Promise<void> {
-    await this.makeRequest(`/servers/${serverId}/sites/${siteId}/deployment/deploy`, "POST");
+    await this.makeRequest(`/servers/${serverId}/sites/${siteId}/deployment/deploy`, "POST", undefined, "none");
   }
 
   async resetDeploymentState(serverId: number, siteId: number): Promise<void> {
-    await this.makeRequest(`/servers/${serverId}/sites/${siteId}/deployment/reset`, "POST");
+    await this.makeRequest(`/servers/${serverId}/sites/${siteId}/deployment/reset`, "POST", undefined, "none");
   }
 
   async getDeploymentScript(serverId: number, siteId: number): Promise<string> {
-    const response = await this.makeRequest(`/servers/${serverId}/sites/${siteId}/deployment/script`);
-    return response.content;
+    return await this.makeRequest(
+      `/servers/${serverId}/sites/${siteId}/deployment/script`,
+      "GET",
+      undefined,
+      "text"
+    ) as string;
   }
 
   async updateDeploymentScript(serverId: number, siteId: number, content: string): Promise<void> {
-    await this.makeRequest(`/servers/${serverId}/sites/${siteId}/deployment/script`, "PUT", {
-      content: content,
-    });
+    await this.makeRequest(
+      `/servers/${serverId}/sites/${siteId}/deployment/script`,
+      "PUT",
+      { content },
+      "none"
+    );
   }
 
   async enableQuickDeploy(serverId: number, siteId: number): Promise<void> {
-    await this.makeRequest(`/servers/${serverId}/sites/${siteId}/deployment`, "POST");
+    await this.makeRequest(`/servers/${serverId}/sites/${siteId}/deployment`, "POST", undefined, "none");
   }
 
   async disableQuickDeploy(serverId: number, siteId: number): Promise<void> {
-    await this.makeRequest(`/servers/${serverId}/sites/${siteId}/deployment`, "DELETE");
+    await this.makeRequest(`/servers/${serverId}/sites/${siteId}/deployment`, "DELETE", undefined, "none");
   }
 
   async rebootServer(serverId: number): Promise<void> {
-    await this.makeRequest(`/servers/${serverId}/reboot`, "POST");
+    await this.makeRequest(`/servers/${serverId}/reboot`, "POST", undefined, "none");
   }
 
   async getServerLoad(serverId: number): Promise<any> {
